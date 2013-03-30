@@ -61,3 +61,16 @@ describe('type', function(){
     assert('textnode' === type(document.createTextNode('div')));
   });
 });
+
+describe('type.specific', function(){
+  function Model(){}
+  type.object = function(v){
+    if (typeof v.then == 'function') return 'promise'
+    if (v instanceof Model) return 'model'
+    return 'object'
+  }
+
+  it('should be hookable', function () {
+    assert('model' === type.specific(new Model))
+  })
+})

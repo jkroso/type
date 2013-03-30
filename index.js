@@ -13,9 +13,9 @@ var toString = Object.prototype.toString;
  * @api public
  */
 
-module.exports = function(v){
+function type(v){
   return types[toString.call(v)] || typeof v;
-};
+}
 
 var types = {
   '[object Function]': 'function',
@@ -38,4 +38,12 @@ if (typeof window != 'undefined') {
   }
 }
 
-module.exports.types = types
+module.exports = type
+type.types = types
+
+type.specific = function(v){
+  var general = type(v)
+  var fn = type[general]
+  if (fn) return fn(v)
+  return general
+}
