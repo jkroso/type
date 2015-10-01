@@ -1,17 +1,12 @@
-REPORTER=dot
-
 serve: node_modules
-	@node_modules/serve/bin/serve -Slojp 0
+	@$</serve/bin/serve -Slojp 0
 
 test: node_modules
-	@node_modules/mocha/bin/mocha test/*.test.js \
-		--reporter $(REPORTER) \
-		--timeout 500 \
-		--check-leaks \
-		--bail
-	@sed "s/'type/'.\//" Readme.md | node_modules/jsmd/bin/jsmd
+	@$</hydro/bin/_hydro test/*.test.js \
+		--formatter $</hydro-dot \
+		--setup test/hydro.conf.js
 
 node_modules: package.json
-	@packin install --meta $< --folder $@
+	@npm install
 
 .PHONY: serve test
