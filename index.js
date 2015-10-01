@@ -1,4 +1,3 @@
-
 var toString = {}.toString
 var DomNode = typeof window != 'undefined'
   ? window.Node
@@ -12,7 +11,7 @@ var DomNode = typeof window != 'undefined'
  * @api public
  */
 
-module.exports = exports = function(x){
+module.exports = exports = function type(x){
   var type = typeof x
   if (type != 'object') return type
   type = types[toString.call(x)]
