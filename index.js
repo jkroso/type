@@ -1,7 +1,7 @@
 var toString = {}.toString
 var DomNode = typeof window != 'undefined'
   ? window.Node
-  : Function
+  : Function // could be any function
 
 /**
  * Return the type of `val`.
@@ -15,6 +15,12 @@ module.exports = exports = function type(x){
   var type = typeof x
   if (type != 'object') return type
   type = types[toString.call(x)]
+  if (type == 'object') {
+    // in case they have been polyfilled
+    if (x instanceof Map) return 'map'
+    if (x instanceof Set) return 'set'
+    return 'object'
+  }
   if (type) return type
   if (x instanceof DomNode) switch (x.nodeType) {
     case 1:  return 'element'
@@ -31,12 +37,14 @@ var types = exports.types = {
   '[object RegExp]': 'regexp',
   '[object Arguments]': 'arguments',
   '[object Array]': 'array',
+  '[object Set]': 'set',
   '[object String]': 'string',
   '[object Null]': 'null',
   '[object Undefined]': 'undefined',
   '[object Number]': 'number',
   '[object Boolean]': 'boolean',
   '[object Object]': 'object',
+  '[object Map]': 'map',
   '[object Text]': 'text-node',
   '[object Uint8Array]': 'bit-array',
   '[object Uint16Array]': 'bit-array',

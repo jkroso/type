@@ -2,7 +2,7 @@ serve: node_modules
 	@$</serve/bin/serve -Slojp 0
 
 test: node_modules
-	@$</hydro/bin/_hydro test/*.test.js \
+	@$</hydro/bin/_hydro $</babel-core/register.js test/*.test.js \
 		--formatter $</hydro-dot \
 		--setup test/hydro.conf.js
 

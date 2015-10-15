@@ -65,6 +65,14 @@ it('should match errors', function(){
   assert('error' === type(new SyntaxError))
 })
 
+it('should match Maps', function(){
+  assert('map' === type(new Map))
+})
+
+it('should match Sets', function(){
+  assert('set' === type(new Set))
+})
+
 if (typeof window != 'undefined') describe('in browsers', function(){
   it('should match elements', function(){
     assert('element' === type(document.createElement('div')))
