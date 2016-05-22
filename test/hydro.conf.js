@@ -9,9 +9,6 @@ module.exports = function(hydro) {
     timeout: 500,
     plugins: [
       require('hydro-bdd')
-    ],
-    globals: {
-      assert: require('assert/')
-    }
+    ]
   })
 }
