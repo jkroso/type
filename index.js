@@ -1,5 +1,5 @@
-var toString = {}.toString
-var DomNode = typeof window != 'undefined'
+const toString = {}.toString
+const DomNode = typeof window != 'undefined'
   ? window.Node
   : Function // could be any function
 
@@ -11,7 +11,7 @@ var DomNode = typeof window != 'undefined'
  * @api public
  */
 
-module.exports = exports = function type(x){
+function type(x) {
   var type = typeof x
   if (type != 'object') return type
   type = types[toString.call(x)]
@@ -31,7 +31,7 @@ module.exports = exports = function type(x){
   }
 }
 
-var types = exports.types = {
+export const types = {
   '[object Function]': 'function',
   '[object Date]': 'date',
   '[object RegExp]': 'regexp',
@@ -55,3 +55,5 @@ var types = exports.types = {
   '[object File]': 'file',
   '[object Blob]': 'blob'
 }
+
+export default type
